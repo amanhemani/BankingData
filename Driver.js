@@ -42,11 +42,11 @@ function customerDemo (apikey, customer, login_name, id) {
     }
     if(foundUser){
         var customerData ="Bank Customer: " + customerInfo.first_name + " " + customerInfo.last_name;
-        document.getElementById("welcome").innerText = customerData;
+        return customerData
 
     }
     else{
-        document.getElementById("welcome").innerText = "Error, no such bank account found!"
+        return "error!"
     }
 }
 

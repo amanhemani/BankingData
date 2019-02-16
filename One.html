@@ -10,44 +10,8 @@
     <!-- Required File -->
     <script data-main="lib/capital_one" src="lib/require-jquery.js"></script>
 
-    <script>
-        $(function(){
-            require(['customer'], function (customer) {
-                var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
-                customerDemo(apikey, customer);
-
-
-
-
-            });
-            require(['account'], function (account) {
-                var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
-
-
-                accountDemo(apikey, account);
-
-
-            });
-
-        });
-        function customerDemo (apikey, customer) {
-            var customerAccount = customer.initWithKey(apikey);
-            var customerInfo = customerAccount.getCustomers()[0];
-            console.log("[Customer - Get All Customers] : Sample Customer: " + customerInfo.first_name);
-            $('#customer').html("Bank Customer: <b>" + customerInfo.first_name + " " + customerInfo.last_name +  "</b>");
-        }
-
-
-        function accountDemo (apikey, account) {
-            console.log('Account Demo');
-            var accountAccount = account.initWithKey(apikey);
-            var accountNumber = "5c684310322fa06b6779463f";
-            var customerAccount = accountAccount.getAllByCustomerId(accountNumber)[0];
-            console.log("[test - Get ALL Deposits] : Sample Customer: " + customerAccount);
-            $('#customer').html("Account Type: <b>" + customerAccount.type + "</b><br>Nickname: <b>" + customerAccount.nickname + "</b>");
-        }
-
-    </script>
+    <script src="Driver.js"></script>
+    <script>start()</script>
 </head>
 <body>
 <p>Nessie is Real!</p><br/>

@@ -20,7 +20,7 @@ function accountDemo (apikey, account) {
 function login(name, id){
     require(['customer'], function (customer) {
         var apikey = APIKEY;
-        customerDemo(apikey, customer, name, id);
+        return customerDemo(apikey, customer, name, id);
     });
 }
 

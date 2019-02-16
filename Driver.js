@@ -1,5 +1,7 @@
 
 const APIKEY = "addb4a04857cc80855331a78b402d03c";
+const NAME = "Madonna Howe";
+const CUSTOMER_ID = "5c68428d322fa06b67794638";
 function onLoad() {
     console.log("hi")
 }
@@ -42,14 +44,29 @@ function customerDemo (apikey, customer, login_name, id) {
     }
     if(foundUser){
         var customerData ="Bank Customer: " + customerInfo.first_name + " " + customerInfo.last_name;
+        console.log(customerData);
         return customerData
 
     }
     else{
+        console.log("error! Could not log in!");
         return "error!"
     }
 }
 
-function getPurchases(apikey, name, id){
-    var getPurchase;
+function getPurchases(apikey, id){
+    require(['purchase', 'account'], function (purchase, account) {
+        var purchaseAccess = purchase.initWithKey(apikey);
+        var accountAccess = account.initWithKey(apikey);
+        var accounts = accountAccess.getAllAccounts();
+        var accountToUse = accounts[0];
+        var accountID = accountToUse._id;
+        console.log(accountID);
+        var purchases = purchaseAccess.getAll(accountID);
+        console.log(purchases);
+    });
+}
+
+function pseudoPurchase(){
+    
 }

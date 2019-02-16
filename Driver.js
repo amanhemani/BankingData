@@ -64,9 +64,18 @@ function getPurchases(apikey, id){
         console.log(accountID);
         var purchases = purchaseAccess.getAll(accountID);
         console.log(purchases);
+        return purchases;
     });
 }
 
-function pseudoPurchase(){
-    
+function pseudoPurchase(apikey, id, merchantJson){
+    require(['purchase'], function (purchase) {
+        var purchaseAccess = purchase.initWithKey(apikey);
+        var accountAccess = account.initWithKey(apikey);
+        var accounts = accountAccess.getAllAccounts();
+        var accountToUse = accounts[0];
+        var accountID = accountToUse._id;
+        console.log(accountID);
+        var responseCode = purchaseAccess.createPurchase(accountID, merchantJson);
+    });
 }

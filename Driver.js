@@ -3,6 +3,8 @@ const APIKEY = "addb4a04857cc80855331a78b402d03c";
 var NAME = "Eva Donnelly";
 var CUSTOMER_ID = "5c68428e322fa06b6779463a";
 var weekDaysPurchasesArray = [];
+var loginSuccess = -1;
+var AllCustomerAccounts = [];
 function onLoad() {
     console.log("hi")
 }
@@ -54,11 +56,13 @@ function customerDemo (apikey, customer, login_name, id) {
     if(foundUser){
         var customerData ="Bank Customer: " + customerInfo.first_name + " " + customerInfo.last_name;
         console.log(customerData);
+        loginSuccess = 0;
         return customerData
 
     }
     else{
         console.log("error! Could not log in!");
+        loginSuccess = -1;
         return "error!"
     }
 }
@@ -129,3 +133,10 @@ function pseudoPurchase(apikey, id, merchantJson){
         var responseCode = purchaseAccess.createPurchase(accountID, merchantJson);
     });
 }
+
+// function getAllCustomerAccounts(apikey, customerID) {
+//     require(['account'], function (account) {
+//         var accountsAccess = account.initWithKey(apikey);
+//         var
+//     });
+// }

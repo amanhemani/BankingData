@@ -5,13 +5,15 @@ function ProcessLogin() {
     var BothName = FirstName + " " + LastName;
     login(BothName, CustomerId);
 
+    NAME = BothName;
+    CUSTOMER_ID = CustomerId;
 
 }
 
 function validate(){
     if(loginSuccess === 0) {
-        //alert("Login Successful");
-        loginSuccess = 9;
+        alert("Login Successful");
+        //loginSuccess = 9;
         window.location = "Homepage.html"; //Redirecting to other page
         return false;
     }
@@ -26,7 +28,7 @@ function start(){
     var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
 
     //NOTE: CUSTOMER ID IS CURRENTLY HARDCODED AND SHOULD NOT BE!!!!!!!!
-    var CustomerId = "5c684310322fa06b6779463f";
+    var CustomerId = CUSTOMER_ID;
     require(['customer'], function (customer) {
         //var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
         //customerDemo2(apikey, customer);

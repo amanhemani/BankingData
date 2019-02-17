@@ -5,22 +5,23 @@ function start(){
     var CustomerId = "5c684310322fa06b6779463f";
     require(['customer'], function (customer) {
         //var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
-        customerDemo2(apikey, customer);
+        //customerDemo2(apikey, customer);
 
     });
 
     require(['account'], function (account) {
         //var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
         //The following uses the Account
-        accountDemo2(apikey, account, CustomerId);
-        var Num_Accounts = getNumberOfAccounts(apikey, account, CustomerId, number); //Return the # of accounts
+        //accountDemo2(apikey, account, CustomerId);
+        var Num_Accounts = getNumberOfAccounts(apikey, account, CustomerId); //Return the # of accounts
         console.log("Number of Accounts Found: " + Num_Accounts);
-        var number = 0; //Return the first Account_id, number represents which account to select. For 5 accounts use 0-4.
+        var number = Num_Accounts-1; //Return the first Account_id, number represents which account to select. For 5 accounts use 0-4.
+        while(number >= 0){
         var Account_id = getAccountId(apikey, account, CustomerId, number);
         console.log("Account Id: " + Account_id);
         //The following uses AccountId, unique to account!
         var Account_type = getAccountType(apikey, account, Account_id);
-        console.log("Account Type: " + Account_type)
+        console.log("Account Type: " + Account_type);
         var Account_nickname = getAccountNickname(apikey, account, Account_id);
         console.log("Account Nickname: " + Account_nickname);
         var Account_rewards = getAccountRewards(apikey, account, Account_id);
@@ -29,6 +30,10 @@ function start(){
         console.log("Account Balance: " + Account_balance);
         var Account_Customer_Id = getAccountCustomerId(apikey, account, Account_id);
         console.log("Account Customer Id: " + Account_Customer_Id);
+
+        number = number - 1;
+        //NOTE: Add Frontend code here using above variables in loop.
+        }
     });
 
 

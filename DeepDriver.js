@@ -1,11 +1,21 @@
-function validate(){
+function ProcessLogin() {
     var FirstName = document.getElementById("FirstName").value;
     var LastName = document.getElementById("LastName").value;
+    var CustomerId = document.getElementById("CustomerId").value;
     var BothName = FirstName + " " + LastName;
-    //NOTE: Validate Login here
-    alert("Login Successful");
-    window.location = "Homepage.html"; //Redirecting to other page
-    return false;
+    login(BothName, CustomerId);
+
+
+}
+
+function validate(){
+    if(loginSuccess === 0) {
+        alert("Login Successful");
+        window.location = "Homepage.html"; //Redirecting to other page
+    if (loginSuccess !== 0){
+        alert("Login Failed");
+        }
+    }
 }
 
 

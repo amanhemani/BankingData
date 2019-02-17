@@ -1,6 +1,7 @@
 
 const APIKEY = "addb4a04857cc80855331a78b402d03c";
-var NAME = "Eva Donnelly";
+var NAME;
+console.log("new name: " + NAME);
 var CUSTOMER_ID = "5c68428e322fa06b6779463a";
 var weekDaysPurchasesArray = [];
 var loginSuccess = -1;
@@ -57,6 +58,7 @@ function customerDemo (apikey, customer, login_name, id, cb) {
         var customerData ="Bank Customer: " + customerInfo.first_name + " " + customerInfo.last_name;
         console.log(customerData);
         loginSuccess = 0;
+        sessionStorage.loginSucs = loginSuccess;
         cb();
         return customerData;
 
@@ -64,6 +66,7 @@ function customerDemo (apikey, customer, login_name, id, cb) {
     else{
         console.log("error! Could not log in!");
         loginSuccess = -1;
+        sessionStorage.loginSucs = loginSuccess;
         cb();
         return "error!"
     }
@@ -110,6 +113,7 @@ function getPurchasesWeekArray(purchases){
     console.log(weekArray);
     console.log(weekDaysPurchasesArray);
     weekDaysPurchasesArray = weekArray;
+    sessionStorage.weekDaysArray = weekDaysPurchasesArray;
     console.log(weekDaysPurchasesArray);
 }
 
@@ -124,23 +128,12 @@ function dateStringToDayOfWeek(dateString) {
     return d.getDay();
 }
 
-function pseudoPurchase(apikey, id, merchantJson){
-    require(['purchase', 'account'], function (purchase) {
-        var purchaseAccess = purchase.initWithKey(apikey);
-        var accountAccess = account.initWithKey(apikey);
-        var accounts = accountAccess.getAllAccounts();
-        var accountToUse = accounts[0];
-        var accountID = getAccountID(apikey, accountToUse);
-        console.log(accountID);
-        var responseCode = purchaseAccess.createPurchase(accountID, merchantJson);
-    });
-}
-
 function getAllCustomerAccounts(apikey, customerID) {
     require(['account'], function (account) {
         var accountsAccess = account.initWithKey(apikey);
         var accounts = accountsAccess.getAllByCustomerId(customerID);
         AllCustomerAccounts = accounts;
+        sessionStorage.customerAccounts = AllCustomerAccounts;
     });
 }
 

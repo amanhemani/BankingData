@@ -3,11 +3,57 @@ function ProcessLogin() {
     var LastName = document.getElementById("LastName").value;
     var CustomerId = document.getElementById("CustomerId").value;
     var BothName = FirstName + " " + LastName;
+    NAME = BothName;
+    sessionStorage.name = NAME;
+    CUSTOMER_ID = CustomerId;
+    sessionStorage.customerID = CUSTOMER_ID;
+    console.log(NAME);
     login(BothName, CustomerId);
 
-    NAME = BothName;
-    CUSTOMER_ID = CustomerId;
+}
 
+function getName(){
+    return sessionStorage.name;
+}
+function setName(newName) {
+    NAME = newName;
+}
+function getCustomID() {
+    return sessionStorage.customerID;
+}
+function setCustomID(newID) {
+    CUSTOMER_ID = newID;
+}
+function getWeekDaysPurchasesArray() {
+    var arrayAsString = sessionStorage.weekDaysArray;
+    var array = arrayAsString.split(",");
+    var intsArr = new Array(7);
+    for(var i=0; i<array.length; i++){
+        intsArr[i] = parseInt(array[i]);
+    }
+    console.log(intsArr);
+    return intsArr;
+}
+function setWeekDaysPurchasesArray(newArray) {
+    weekDaysPurchasesArray = newArray;
+}
+function getLoginSuccess() {
+    return sessionStorage.loginSucs;
+}
+function setLoginSuccess(newSuccess) {
+    loginSuccess = newSuccess;
+}
+function getAllCustomerAccounts() {
+    var arrayAsString = sessionStorage.customerAccounts;
+    console.out(arrayAsString);
+    var array = arrayAsString.split(",");
+    return array;
+}
+function setAllCustomerAccounts(customerAccounts) {
+    AllCustomerAccounts = customerAccounts;
+}
+function getAPIKey() {
+    return "addb4a04857cc80855331a78b402d03c";
 }
 
 function validate(){

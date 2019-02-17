@@ -170,11 +170,11 @@ function myFunction() {
             var nick = "";
                 require(["account"], function(account){
                     //console.log(getAccountBalance(APIKEY, account, getAccountID(APIKEY, account)));
-                var number = getNumberOfAccounts(APIKEY, account, CUSTOMER_ID);
+                var number = getNumberOfAccounts(getAPIKey(), account, getCustomID());
                 number = number - 1;
-                 accountID = getAccountId(APIKEY, account, CUSTOMER_ID, number);
+                 accountID = getAccountId(getAPIKey(), account, getCustomID(), number);
                 
-                nick = getAccountNickname(APIKEY, account, accountID);
+                nick = getAccountNickname(getAPIKey(), account, accountID);
                 });</script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -185,11 +185,11 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 // Draw the chart and set the chart values
-getPurchases(APIKEY, CUSTOMER_ID, "Drake's Account", getPurchasesWeekArray);
+getPurchases(getAPIKey(), getCustomID(), "Drake's Account", getPurchasesWeekArray);
 console.log("success 1");
 console.log("success 2!!!!");
-console.log(weekDaysPurchasesArray);
-var Dates_Spending = weekDaysPurchasesArray; //FILL THIS ARRAY USING FUNCTION THAT REPORTS WEEKLY BALANCE
+console.log(getWeekDaysPurchasesArray());
+var Dates_Spending = getWeekDaysPurchasesArray(); //FILL THIS ARRAY USING FUNCTION THAT REPORTS WEEKLY BALANCE
 Dates_Spending[0] = 5; //Example NUMBER
 
 
@@ -197,13 +197,13 @@ Dates_Spending[0] = 5; //Example NUMBER
 function drawChart(weeklySpending){
   var data = google.visualization.arrayToDataTable([
   ['', 'Money Spent per Day'],
-  ['Sunday', weekDaysPurchasesArray[0]],
-  ['Monday', weekDaysPurchasesArray[1]],
-  ['Tuesday', weekDaysPurchasesArray[2]],
-  ['Wednesday', weekDaysPurchasesArray[3]],
-  ['Thursday', weekDaysPurchasesArray[4]],
-  ['Friday', weekDaysPurchasesArray[5]],
-  ['Saturday', weekDaysPurchasesArray[6]]
+  ['Sunday', getWeekDaysPurchasesArray()[0]],
+  ['Monday', getWeekDaysPurchasesArray()[1]],
+  ['Tuesday', getWeekDaysPurchasesArray()[2]],
+  ['Wednesday', getWeekDaysPurchasesArray()[3]],
+  ['Thursday', getWeekDaysPurchasesArray()[4]],
+  ['Friday', getWeekDaysPurchasesArray()[5]],
+  ['Saturday', getWeekDaysPurchasesArray()[6]]
 ]);
 
 
@@ -223,7 +223,7 @@ function drawChart(weeklySpending){
 <script>
     window.onload = function(){
 
-    document.getElementById('output').innerHTML = NAME;
+    document.getElementById('output').innerHTML = getName();
     };
     </script>
 

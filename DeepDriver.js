@@ -1,3 +1,10 @@
+function validate(){
+    var FirstName = document.getElementById("FirstName").value;
+    var LastName = document.getElementById("LastName").value;
+    if(username == "hello");
+}
+
+
 function start(){
     var apikey = '33b2ec67eaa776d0a0e1ce35be9f2648';
 

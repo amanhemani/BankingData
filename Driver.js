@@ -30,11 +30,12 @@ function getAccountID(apikey, account){
     return accountID
 }
 
-function login(name, id){
+function login(name, id, cb){
     require(['customer'], function (customer) {
         var apikey = APIKEY;
         return customerDemo(apikey, customer, name, id);
     });
+    cb();
 }
 
 function customerDemo (apikey, customer, login_name, id) {
@@ -134,9 +135,21 @@ function pseudoPurchase(apikey, id, merchantJson){
     });
 }
 
-// function getAllCustomerAccounts(apikey, customerID) {
-//     require(['account'], function (account) {
-//         var accountsAccess = account.initWithKey(apikey);
-//         var
-//     });
-// }
+function getAllCustomerAccounts(apikey, customerID) {
+    require(['account'], function (account) {
+        var accountsAccess = account.initWithKey(apikey);
+        var accounts = accountsAccess.getAllByCustomerId(customerID);
+        AllCustomerAccounts = accounts;
+    });
+}
+
+function updateDropdownMenu(){
+    for(var i=0; i<AllCustomerAccounts.length; i++){
+        var name = AllCustomerAccounts[i].nickname;
+        var dropdownMenu = document.getElementsByClassName("dropdown-content")[0];
+        var newElement = document.createElement("a");
+        newElement.text = name;
+        dropdownMenu.add(newElement);
+
+    }
+}

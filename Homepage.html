@@ -1,22 +1,20 @@
-<script src="DeepDriver.js"></script>
-<script src="Driver.js"></script>
-<script data-main="lib/capital_one" src="lib/require-jquery.js"></script>
+
 
 <!DOCTYPE html>
 <html lang="en-US">
+<head>
     <!-- IMPORTING CSS SCRIPT -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
         <link href="hackAppStyle.css" rel="stylesheet" type="text/css">
 
     <!--END OF IMPORTING CSS-->
-<body>
 
-<!-- CORNER HOME IMAGE BUTTON -->
-<input type="image" id="myimage" style="height:50px;width:100px;" src="./cone.png" />
+    <script src="DeepDriver.js"></script>
+    <script src="Driver.js"></script>
+    <script data-main="lib/capital_one" src="lib/require-jquery.js"></script>
 <!-- END OF HOME IMAGE BUTTON -->
 
 <!-- MAKING THE DROPDOWN NAV -->
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -127,7 +125,7 @@ body {margin:0;font-family:Arial}
 </style>
 </head>
 <body>
-
+<input type="image" id="myimage" style="height:50px;width:100px;" src="./cone.png" />
 <div class="topnav" id="myTopnav">
   <a href="#home" class="active">Home</a>
   <a href="#news">News</a>
@@ -149,6 +147,12 @@ body {margin:0;font-family:Arial}
 <div style="padding-left:16px">
   
 </div>
+<p>Welcome Back, </p>
+<p id="output"></p>
+
+
+<!-- BARCHART GRAPH -->
+<div id="barchart"></div>
 
 <script>
 function myFunction() {
@@ -160,12 +164,7 @@ function myFunction() {
   }
 }
 </script>
-
-</body>
-<!-- END OF DROP-DOWN NAV-->
-<body>
         <script>login(NAME, CUSTOMER_ID)</script>
-        <script>getPurchases(APIKEY,CUSTOMER_ID, "Drake's Account")</script>
         <script>
             var accountID = "";
             var nick = "";
@@ -178,13 +177,6 @@ function myFunction() {
                 nick = getAccountNickname(APIKEY, account, accountID);
                 });</script>
 
-<p>Welcome Back, </p>
-       <p id="output"></p>
-
-
-<!-- BARCHART GRAPH -->
-<div id="barchart"></div>
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
@@ -193,8 +185,11 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 // Draw the chart and set the chart values
-
-var Dates_Spending = new Array(7); //FILL THIS ARRAY USING FUNCTION THAT REPORTS WEEKLY BALANCE
+getPurchases(APIKEY, CUSTOMER_ID, "Drake's Account", getPurchasesWeekArray);
+console.log("success 1");
+console.log("success 2!!!!");
+console.log(weekDaysPurchasesArray);
+var Dates_Spending = weekDaysPurchasesArray; //FILL THIS ARRAY USING FUNCTION THAT REPORTS WEEKLY BALANCE
 Dates_Spending[0] = 5; //Example NUMBER
 
 
@@ -202,13 +197,13 @@ Dates_Spending[0] = 5; //Example NUMBER
 function drawChart(weeklySpending){
   var data = google.visualization.arrayToDataTable([
   ['', 'Money Spent per Day'],
-  ['Sunday', Dates_Spending[0]],
-  ['Monday', Dates_Spending[1]],
-  ['Tuesday', Dates_Spending[2]],
-  ['Wednesday', Dates_Spending[3]],
-  ['Thursday', Dates_Spending[4]],
-  ['Friday', Dates_Spending[5]],
-  ['Saturday', Dates_Spending[6]]
+  ['Sunday', weekDaysPurchasesArray[0]],
+  ['Monday', weekDaysPurchasesArray[1]],
+  ['Tuesday', weekDaysPurchasesArray[2]],
+  ['Wednesday', weekDaysPurchasesArray[3]],
+  ['Thursday', weekDaysPurchasesArray[4]],
+  ['Friday', weekDaysPurchasesArray[5]],
+  ['Saturday', weekDaysPurchasesArray[6]]
 ]);
 
 

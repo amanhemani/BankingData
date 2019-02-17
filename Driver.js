@@ -2,6 +2,7 @@
 const APIKEY = "addb4a04857cc80855331a78b402d03c";
 const NAME = "Eva Donnelly";
 const CUSTOMER_ID = "5c68428e322fa06b6779463a";
+var weekDaysPurchasesArray = [];
 function onLoad() {
     console.log("hi")
 }
@@ -101,6 +102,9 @@ function getPurchasesWeekArray(purchases){
         weekArray[dateStringToDayOfWeek(purchases[i].purchase_date)]+=purchases[i].amount;
     }
     console.log(weekArray);
+    console.log(weekDaysPurchasesArray);
+    weekDaysPurchasesArray = weekArray;
+    console.log(weekDaysPurchasesArray);
 }
 
 function dateStringToDayOfWeek(dateString) {

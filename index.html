@@ -12,18 +12,16 @@
 </head>
 <body>
     <h1 id="welcome"></h1>
-    <script>login(NAME, CUSTOMER_ID)</script>
     <script>
+        login(NAME, CUSTOMER_ID);
         var purchase;
         getPurchases(APIKEY, CUSTOMER_ID, "Drake's Account", getPurchasesWeekArray);
         function logPurchases(localPurchases) {
             purchase = localPurchases;
         }
-
-    </script>
-    <script>
         require(["account"], function(account){
             console.log(getAccountBalance(APIKEY, account, getAccountID(APIKEY, account)));
-        });</script>
+        });
+    </script>
 </body>
 </html>

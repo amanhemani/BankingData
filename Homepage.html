@@ -163,6 +163,11 @@ function myFunction() {
     x.className = "topnav";
   }
 }
+
+var A_type;
+var Balance;
+var Rewards;
+
 </script>
         <!--<script>login(NAME, CUSTOMER_ID)</script>-->
         <script>
@@ -173,8 +178,12 @@ function myFunction() {
                 var number = getNumberOfAccounts(getAPIKey(), account, getCustomID());
                 number = number - 1;
                  accountID = getAccountId(getAPIKey(), account, getCustomID(), number);
-                
+
                 nick = getAccountNickname(getAPIKey(), account, accountID);
+                A_type = getAccountType(getAPIKey(), account, accountID);
+                Balance = getAccountBalance(getAPIKey(), account, accountID);
+                Rewards = getAccountRewards(getAPIKey(), account, accountID);
+
                 });</script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -224,8 +233,16 @@ function drawChart(weeklySpending){
     window.onload = function(){
 
     document.getElementById('output').innerHTML = getName();
+
+    document.getElementById('output2').innerHTML = ("Type: \n " + A_type + ", Balance: \n " + Balance + ", Rewards: \n " + Rewards);
     };
     </script>
+
+<p>Account Information:</p>
+<p id="output2"></p>
+
+
+
 
 
 </html>

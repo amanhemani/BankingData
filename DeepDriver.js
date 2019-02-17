@@ -10,11 +10,14 @@ function ProcessLogin() {
 
 function validate(){
     if(loginSuccess === 0) {
-        alert("Login Successful");
+        //alert("Login Successful");
+        loginSuccess = 9;
         window.location = "Homepage.html"; //Redirecting to other page
+        return false;
+    }
     if (loginSuccess !== 0){
         alert("Login Failed");
-        }
+        return 0;
     }
 }
 

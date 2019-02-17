@@ -30,15 +30,14 @@ function getAccountID(apikey, account){
     return accountID
 }
 
-function login(name, id, cb){
+function login(name, id){
     require(['customer'], function (customer) {
         var apikey = APIKEY;
-        return customerDemo(apikey, customer, name, id);
+        return customerDemo(apikey, customer, name, id, validate);
     });
-    cb();
 }
 
-function customerDemo (apikey, customer, login_name, id) {
+function customerDemo (apikey, customer, login_name, id, cb) {
     var customerAccount = customer.initWithKey(apikey);
     var customerInfo = customerAccount.getCustomerById(id);
     var index_value = 0;
@@ -58,12 +57,14 @@ function customerDemo (apikey, customer, login_name, id) {
         var customerData ="Bank Customer: " + customerInfo.first_name + " " + customerInfo.last_name;
         console.log(customerData);
         loginSuccess = 0;
-        return customerData
+        cb();
+        return customerData;
 
     }
     else{
         console.log("error! Could not log in!");
         loginSuccess = -1;
+        cb();
         return "error!"
     }
 }

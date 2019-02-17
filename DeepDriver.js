@@ -37,6 +37,7 @@ function start(){
     });
 
 
+
 }
 /*
 function customerDemo2 (apikey, customer) {
@@ -88,7 +89,7 @@ function getAccountRewards (apikey, account, Account_id) {
 }
 
 function getAccountBalance (apikey, account, Account_id) {
-    console.log('Function getAccountRewards');
+    console.log('Function getAccountBalance');
     var accountAccount = account.initWithKey(apikey);
     var customerAccount = accountAccount.getAccountById(Account_id);
     // $('#customer').html("Account ID's: <b>" + customerAccount._id);

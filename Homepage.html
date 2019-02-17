@@ -6,7 +6,7 @@
 <html lang="en-US">
     <!-- IMPORTING CSS SCRIPT -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-        <link href="C:\Users\Crii\Downloads\BankingData-master\BankingData-master\hackAppStyle.css" rel="stylesheet" type="text/css">
+        <link href="hackAppStyle.css" rel="stylesheet" type="text/css">
 
     <!--END OF IMPORTING CSS-->
 <body>
@@ -168,16 +168,18 @@ function myFunction() {
         <script>getPurchases(APIKEY,CUSTOMER_ID, "Drake's Account")</script>
         <script>
             var accountID = "";
+            var nick = "";
                 require(["account"], function(account){
                     //console.log(getAccountBalance(APIKEY, account, getAccountID(APIKEY, account)));
                 var number = getNumberOfAccounts(APIKEY, account, CUSTOMER_ID);
                 number = number - 1;
                  accountID = getAccountId(APIKEY, account, CUSTOMER_ID, number);
                 
-                var nick = getAccountNickname(APIKEY, account, accountID);
+                nick = getAccountNickname(APIKEY, account, accountID);
                 });</script>
-<p>Welcome Back! </p>
 
+<p>Welcome Back, </p>
+       <p id="output"></p>
 
 
 <!-- BARCHART GRAPH -->
@@ -215,4 +217,13 @@ function drawChart(weeklySpending){
 
 
 </body>
+
+<script>
+    window.onload = function(){
+
+    document.getElementById('output').innerHTML = NAME;
+    };
+    </script>
+
+
 </html>

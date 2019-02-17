@@ -1,7 +1,11 @@
 function validate(){
     var FirstName = document.getElementById("FirstName").value;
     var LastName = document.getElementById("LastName").value;
-    if(username == "hello");
+    var BothName = FirstName + " " + LastName;
+    //NOTE: Validate Login here
+    alert("Login Successful");
+    window.location = "Homepage.html"; //Redirecting to other page
+    return false;
 }
 
 
@@ -24,7 +28,7 @@ function start(){
         console.log("Number of Accounts Found: " + Num_Accounts);
         var number = Num_Accounts-1; //Return the first Account_id, number represents which account to select. For 5 accounts use 0-4.
         while(number >= 0){
-        var Account_id = getAccountId(apikey, account, CustomerId, number);
+        var Account_id = getAccountIsd(apikey, account, CustomerId, number);
         console.log("Account Id: " + Account_id);
         //The following uses AccountId, unique to account!
         var Account_type = getAccountType(apikey, account, Account_id);

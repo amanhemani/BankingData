@@ -62,7 +62,7 @@ function customerDemo (apikey, customer, login_name, id) {
     }
 }
 
-function getPurchases(apikey, id, account_name){
+function getPurchases(apikey, id, account_name, cb){
     require(['purchase', 'account'], function (purchase, account) {
         var purchaseAccess = purchase.initWithKey(apikey);
         var accountAccess = account.initWithKey(apikey);
@@ -83,13 +83,35 @@ function getPurchases(apikey, id, account_name){
             console.log(accountID);
             var purchases = purchaseAccess.getAll(accountID);
             console.log(purchases);
+            cb(purchases);
             return purchases;
         } else {
             console.log("error, no such account exists!");
+            cb("error!");
             return "error!"
         }
 
     });
+}
+
+function getPurchasesWeekArray(purchases){
+    var weekArray = [0,0,0,0,0,0,0];
+    for(var i=0; i<purchases.length; i++){
+        console.log(purchases[i].purchase_date);
+        weekArray[dateStringToDayOfWeek(purchases[i].purchase_date)]+=purchases[i].amount;
+    }
+    console.log(weekArray);
+}
+
+function dateStringToDayOfWeek(dateString) {
+    var year = dateString.substring(0, 4);
+    var month = dateString.substring(5,7);
+    var day = dateString.substring(8,10);
+    console.log(year);
+    console.log(month);
+    console.log(day);
+    var d = new Date(year, month, day,0,0,0,0);
+    return d.getDay();
 }
 
 function pseudoPurchase(apikey, id, merchantJson){

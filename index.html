@@ -5,13 +5,22 @@
     <title>Homepage</title>
     <script src="Driver.js"></script>
     <script src="DeepDriver.js"></script>
+    <script src="purchase.js"></script>
+    <script src=accounts.js"></script>
     <script data-main="lib/capital_one" src="lib/require-jquery.js"></script>
     <!-- Required File -->
 </head>
 <body>
     <h1 id="welcome"></h1>
     <script>login(NAME, CUSTOMER_ID)</script>
-    <script>getPurchases(APIKEY,CUSTOMER_ID, "Drake's Account")</script>
+    <script>
+        var purchase;
+        getPurchases(APIKEY, CUSTOMER_ID, "Drake's Account", getPurchasesWeekArray);
+        function logPurchases(localPurchases) {
+            purchase = localPurchases;
+        }
+
+    </script>
     <script>
         require(["account"], function(account){
             console.log(getAccountBalance(APIKEY, account, getAccountID(APIKEY, account)));

@@ -1,7 +1,7 @@
 
 const APIKEY = "addb4a04857cc80855331a78b402d03c";
-const NAME = "Madonna Howe";
-const CUSTOMER_ID = "5c68428d322fa06b67794638";
+const NAME = "Eva Donnelly";
+const CUSTOMER_ID = "5c68428e322fa06b6779463a";
 function onLoad() {
     console.log("hi")
 }
@@ -17,6 +17,14 @@ function accountDemo (apikey, account) {
     console.log('Account Demo');
     var custAccount = account.initWithKey(apikey);
     console.log("[Account - Get All] : Sample Account Nickname: (" + custAccount.getAllAccounts()[0].nickname + ")");
+}
+
+function getAccountID(apikey, account){
+    var accountAccess = account.initWithKey(apikey);
+    var accounts = accountAccess.getAllAccounts();
+    var accountToUse = accounts[0];
+    var accountID = accountToUse._id;
+    return accountID
 }
 
 function login(name, id){
@@ -54,27 +62,43 @@ function customerDemo (apikey, customer, login_name, id) {
     }
 }
 
-function getPurchases(apikey, id){
+function getPurchases(apikey, id, account_name){
     require(['purchase', 'account'], function (purchase, account) {
         var purchaseAccess = purchase.initWithKey(apikey);
         var accountAccess = account.initWithKey(apikey);
-        var accounts = accountAccess.getAllAccounts();
-        var accountToUse = accounts[0];
-        var accountID = accountToUse._id;
-        console.log(accountID);
-        var purchases = purchaseAccess.getAll(accountID);
-        console.log(purchases);
-        return purchases;
+        var accounts = accountAccess.getAllByCustomerId(id);
+        var accountToUse;
+        var found = false;
+        var idx = 0;
+        for(var i=0; i<accounts.length; i++){
+            if(accounts[i].nickname === account_name){
+                found = true;
+                idx = i;
+            }
+        }
+        if(found){
+            accountToUse = accounts[idx];
+            console.log(accountToUse);
+            var accountID = accountToUse._id;
+            console.log(accountID);
+            var purchases = purchaseAccess.getAll(accountID);
+            console.log(purchases);
+            return purchases;
+        } else {
+            console.log("error, no such account exists!");
+            return "error!"
+        }
+
     });
 }
 
 function pseudoPurchase(apikey, id, merchantJson){
-    require(['purchase'], function (purchase) {
+    require(['purchase', 'account'], function (purchase) {
         var purchaseAccess = purchase.initWithKey(apikey);
         var accountAccess = account.initWithKey(apikey);
         var accounts = accountAccess.getAllAccounts();
         var accountToUse = accounts[0];
-        var accountID = accountToUse._id;
+        var accountID = getAccountID(apikey, accountToUse);
         console.log(accountID);
         var responseCode = purchaseAccess.createPurchase(accountID, merchantJson);
     });
